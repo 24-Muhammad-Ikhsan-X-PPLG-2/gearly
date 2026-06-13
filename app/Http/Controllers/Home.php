@@ -9,6 +9,6 @@ class Home extends Controller
 {
     public function index()
     {
-        return Inertia::render("welcome");
+        return Inertia::render("landing");
     }
 }
