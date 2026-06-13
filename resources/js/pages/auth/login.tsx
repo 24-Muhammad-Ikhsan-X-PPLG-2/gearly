@@ -1,4 +1,4 @@
-import AuthLogin from '../../components/AuthLogin';
+import AuthLogin from '../../features/login/AuthLogin';
 
 const Login = () => {
     return <AuthLogin />;
