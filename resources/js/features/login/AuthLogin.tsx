@@ -10,6 +10,7 @@ import BrandPanel from '@/features/login/components/BrandPanel';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { LoginScheme, LoginSchemeType } from '@/features/login/scheme';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { router } from '@inertiajs/react';
 
 const socialProviders = [
     { label: 'Continue with Google', icon: Google },
@@ -32,17 +33,8 @@ const AuthLogin = () => {
         },
         mode: 'onChange',
     });
-    const handleLogin: SubmitHandler<LoginSchemeType> = async ({
-        email,
-        password,
-        remember,
-    }) => {
-        console.log({
-            email,
-            password,
-            remember,
-        });
-        await new Promise((resolve) => setTimeout(resolve, 900));
+    const handleLogin: SubmitHandler<LoginSchemeType> = async (data) => {
+        router.post('/auth/signin', data);
     };
 
     return (
