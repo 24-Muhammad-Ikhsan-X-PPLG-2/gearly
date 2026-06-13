@@ -78,7 +78,7 @@ const Footer = () => {
                             className="md:col-span-1"
                         >
                             <div className="mb-6 flex items-center space-x-2">
-                                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-blue-600">
+                                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-blue-500 to-blue-600">
                                     <span className="text-lg font-bold text-white">
                                         G
                                     </span>
