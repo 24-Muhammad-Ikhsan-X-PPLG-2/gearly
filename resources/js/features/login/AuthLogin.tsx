@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Eye, EyeOff, Gamepad2, Lock, Mail } from 'lucide-react';
 import Discord from '@/icons/Discord';
@@ -7,10 +6,7 @@ import SocialLoginButton from '@/features/login/components/SocialLoginButtons';
 import AuthInput from '@/features/login/components/AuthInput';
 import SecurityNoticeCard from '@/features/login/components/SecurityNoticeCard';
 import BrandPanel from '@/features/login/components/BrandPanel';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { LoginScheme, LoginSchemeType } from '@/features/login/scheme';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { router } from '@inertiajs/react';
+import useLogin from './hooks/useLogin';
 
 const socialProviders = [
     { label: 'Continue with Google', icon: Google },
@@ -19,23 +15,15 @@ const socialProviders = [
 ];
 
 const AuthLogin = () => {
-    const [showPassword, setShowPassword] = useState(false);
     const {
-        register,
+        errors,
+        handleLogin,
         handleSubmit,
-        formState: { errors, isSubmitting },
-    } = useForm<LoginSchemeType>({
-        resolver: zodResolver(LoginScheme),
-        defaultValues: {
-            email: '',
-            password: '',
-            remember: false,
-        },
-        mode: 'onChange',
-    });
-    const handleLogin: SubmitHandler<LoginSchemeType> = async (data) => {
-        router.post('/auth/signin', data);
-    };
+        isSubmitting,
+        register,
+        setShowPassword,
+        showPassword,
+    } = useLogin();
 
     return (
         <motion.div

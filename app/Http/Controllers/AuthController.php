@@ -21,11 +21,20 @@ class AuthController extends Controller
         ]);
         $remember = $req->boolean('remember');
         if (!Auth::attempt($cred, $remember)) {
-            return back()->withErrors([
-                'email' => 'Email or password invalid.'
-            ]);
+            return response()->json([
+                'success' => false,
+                'field' => [
+                    'email' => [
+                        "Email or password invalid."
+                    ],
+                    'password' => ["Email or password invalid."]
+                ]
+            ], 400);
         }
         $req->session()->regenerate();
-        return redirect()->intended('/dashboard');
+        return response()->json([
+            'success' => true,
+            'field' => null,
+        ]);
     }
 }
