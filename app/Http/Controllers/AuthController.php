@@ -13,6 +13,10 @@ class AuthController extends Controller
     {
         return Inertia::render("auth/login");
     }
+    public function register()
+    {
+        return Inertia::render("auth/register");
+    }
     public function loginP(LoginRequest $req)
     {
         $cred = $req->safe()->only([

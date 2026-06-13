@@ -8,4 +8,5 @@ Route::get("/", [Home::class, "index"]);
 Route::prefix('auth')->group(function () {
     Route::get("/signin", [AuthController::class, "login"]);
     Route::post('/signin', [AuthController::class, "loginP"]);
+    Route::get("/signup", [AuthController::class, "register"]);
 });
