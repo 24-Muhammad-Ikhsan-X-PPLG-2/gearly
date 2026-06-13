@@ -24,7 +24,7 @@ const HeroSection = () => {
     return (
         <section className="pt-32 pb-16 md:pt-40 md:pb-24">
             <div className="mx-auto max-w-7xl px-6">
-                <div className="grid items-center gap-12 md:grid-cols-2">
+                <div className="grid items-center gap-12 lg:grid-cols-2">
                     {/* Left Content */}
                     <motion.div
                         variants={containerVariants}
@@ -116,7 +116,7 @@ const HeroSection = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true }}
-                        className="relative hidden md:block"
+                        className="relative hidden lg:block"
                     >
                         <div className="space-y-4">
                             {/* Featured Card 1 */}
@@ -127,7 +127,7 @@ const HeroSection = () => {
                             >
                                 <div className="mb-3 flex items-start justify-between">
                                     <div className="flex flex-1 items-center space-x-3">
-                                        <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-purple-400 to-pink-400" />
+                                        <div className="h-10 w-10 rounded-lg bg-linear-to-br from-purple-400 to-pink-400" />
                                         <div className="flex-1">
                                             <div className="text-sm font-semibold text-slate-900">
                                                 Mobile Legends Diamonds
@@ -166,7 +166,7 @@ const HeroSection = () => {
                             >
                                 <div className="mb-3 flex items-start justify-between">
                                     <div className="flex flex-1 items-center space-x-3">
-                                        <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-orange-400 to-red-400" />
+                                        <div className="h-10 w-10 rounded-lg bg-linear-to-br from-orange-400 to-red-400" />
                                         <div className="flex-1">
                                             <div className="text-sm font-semibold text-slate-900">
                                                 Free Fire Diamonds
@@ -201,7 +201,7 @@ const HeroSection = () => {
                             <motion.div
                                 animate={{ y: [0, -6, 0] }}
                                 transition={{ duration: 5, repeat: Infinity }}
-                                className="rounded-2xl bg-gradient-to-br from-blue-600 to-blue-700 p-4 text-white shadow-lg"
+                                className="rounded-2xl bg-linear-to-br from-blue-600 to-blue-700 p-4 text-white shadow-lg"
                             >
                                 <div className="mb-3 flex items-center justify-between">
                                     <span className="text-sm font-medium opacity-90">

@@ -72,7 +72,7 @@ const HowItWorks = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="grid gap-4 md:grid-cols-4 md:gap-0"
+                    className="grid gap-4 md:grid-cols-4"
                 >
                     {steps.map((step, index) => {
                         const Icon = step.icon;
@@ -82,12 +82,12 @@ const HowItWorks = () => {
                                 variants={itemVariants}
                                 className="relative"
                             >
-                                <div className="flex flex-col items-center md:items-center">
+                                <div className="flex h-full flex-col items-center md:items-center">
                                     {/* Step Card */}
                                     <div className="relative z-10 mb-6 md:mb-8">
-                                        <div className="rounded-2xl border border-slate-100 bg-white p-6 text-center transition-all hover:border-blue-200 hover:shadow-lg">
+                                        <div className="h-full rounded-2xl border border-slate-100 bg-white p-6 text-center transition-all hover:border-blue-200 hover:shadow-lg">
                                             <div className="absolute top-0 right-0 translate-x-3 -translate-y-3">
-                                                <span className="flex inline-block h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-lg font-bold text-white">
+                                                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-lg font-bold text-white">
                                                     {step.number}
                                                 </span>
                                             </div>
@@ -110,12 +110,12 @@ const HowItWorks = () => {
 
                                     {/* Connector Line */}
                                     {index < steps.length - 1 && (
-                                        <div className="absolute top-24 left-1/2 hidden h-1 w-full bg-gradient-to-r from-blue-200 to-transparent md:block" />
+                                        <div className="absolute top-24 left-1/2 hidden h-1 w-full bg-linear-to-r from-blue-200 to-transparent md:block" />
                                     )}
 
                                     {/* Vertical Line for Mobile */}
                                     {index < steps.length - 1 && (
-                                        <div className="absolute top-24 left-1/2 h-16 w-0.5 bg-gradient-to-b from-blue-200 to-transparent md:hidden" />
+                                        <div className="absolute top-24 left-1/2 h-16 w-0.5 bg-linear-to-b from-blue-200 to-transparent md:hidden" />
                                     )}
                                 </div>
                             </motion.div>

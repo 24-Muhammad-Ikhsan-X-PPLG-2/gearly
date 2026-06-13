@@ -1,6 +1,7 @@
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Link } from '@inertiajs/react';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,7 @@ const Navbar = () => {
                 <div className="flex items-center justify-between">
                     {/* Logo */}
                     <div className="flex items-center space-x-2">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-blue-700">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-blue-600 to-blue-700">
                             <span className="text-lg font-bold text-white">
                                 G
                             </span>
@@ -31,7 +32,7 @@ const Navbar = () => {
                     </div>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden items-center space-x-1 md:flex">
+                    <div className="hidden items-center space-x-1 lg:flex">
                         {navItems.map((item) => (
                             <a
                                 key={item.label}
@@ -44,11 +45,13 @@ const Navbar = () => {
                     </div>
 
                     {/* Auth Buttons */}
-                    <div className="hidden items-center space-x-3 md:flex">
-                        <button className="px-4 py-2 text-sm text-slate-600 transition-colors hover:text-slate-900">
-                            Sign In
-                        </button>
-                        <button className="rounded-lg bg-blue-600 px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700">
+                    <div className="hidden items-center space-x-3 lg:flex">
+                        <Link href={'/auth/signin'}>
+                            <button className="cursor-pointer px-4 py-2 text-sm text-slate-600 transition-colors hover:text-slate-900">
+                                Sign In
+                            </button>
+                        </Link>
+                        <button className="cursor-pointer rounded-lg bg-blue-600 px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700">
                             Register
                         </button>
                     </div>
@@ -56,39 +59,41 @@ const Navbar = () => {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="rounded-lg p-2 transition-colors hover:bg-slate-100 md:hidden"
+                        className="rounded-lg p-2 transition-colors hover:bg-slate-100 lg:hidden"
                     >
                         {isOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
                 </div>
 
                 {/* Mobile Navigation */}
-                {isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        className="mt-4 space-y-2 pb-4 md:hidden"
-                    >
-                        {navItems.map((item) => (
-                            <a
-                                key={item.label}
-                                href={item.href}
-                                className="block rounded-lg px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-100"
-                            >
-                                {item.label}
-                            </a>
-                        ))}
-                        <div className="space-y-2 border-t border-slate-100 pt-2">
-                            <button className="w-full rounded-lg px-4 py-2 text-left text-sm text-slate-600 transition-colors hover:bg-slate-100">
-                                Sign In
-                            </button>
-                            <button className="w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700">
-                                Register
-                            </button>
-                        </div>
-                    </motion.div>
-                )}
+                <AnimatePresence mode="wait">
+                    {isOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            className="mt-4 space-y-2 pb-4 lg:hidden"
+                        >
+                            {navItems.map((item) => (
+                                <a
+                                    key={item.label}
+                                    href={item.href}
+                                    className="block rounded-lg px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-100"
+                                >
+                                    {item.label}
+                                </a>
+                            ))}
+                            <div className="space-y-2 border-t border-slate-100 pt-2">
+                                <button className="w-full rounded-lg px-4 py-2 text-left text-sm text-slate-600 transition-colors hover:bg-slate-100">
+                                    Sign In
+                                </button>
+                                <button className="w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700">
+                                    Register
+                                </button>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </nav>
     );

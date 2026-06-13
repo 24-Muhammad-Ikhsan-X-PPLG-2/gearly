@@ -5,4 +5,6 @@ use App\Http\Controllers\Home;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/", [Home::class, "index"]);
-Route::get("/auth/signin", [AuthController::class, "login"]);
+Route::prefix('auth')->group(function () {
+    Route::get("/signin", [AuthController::class, "login"]);
+});
