@@ -8,8 +8,10 @@ import HowItWorks from '../features/landing/components/HowItWorks';
 import Testimonials from '../features/landing/components/Testimonials';
 import SellerCTA from '../features/landing/components/SellerCTA';
 import Footer from '../features/landing/components/Footer';
+import { FC } from 'react';
 
-const Landing = () => {
+const Landing: FC<{ user: any }> = ({ user }) => {
+    console.log(user);
     return (
         <div className="min-h-screen bg-white">
             <Navbar />

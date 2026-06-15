@@ -7,11 +7,22 @@ import AuthInput from '@/features/login/components/AuthInput';
 import SecurityNoticeCard from '@/features/login/components/SecurityNoticeCard';
 import BrandPanel from '@/features/login/components/BrandPanel';
 import useLogin from './hooks/useLogin';
+import { Link } from '@inertiajs/react';
 
 const socialProviders = [
-    { label: 'Continue with Google', icon: Google },
-    { label: 'Continue with Discord', icon: Discord },
-    { label: 'Continue with Steam', icon: Gamepad2 },
+    {
+        label: 'Continue with Google',
+        icon: Google,
+        onClick: () => {},
+    },
+    {
+        label: 'Continue with Discord',
+        icon: Discord,
+        onClick: () => {
+            window.location.href = '/auth/discord';
+        },
+    },
+    { label: 'Continue with Steam', icon: Gamepad2, onClick: () => {} },
 ];
 
 const AuthLogin = () => {
@@ -56,6 +67,7 @@ const AuthLogin = () => {
                             <div className="grid gap-3">
                                 {socialProviders.map((provider) => (
                                     <SocialLoginButton
+                                        onClick={provider.onClick}
                                         key={provider.label}
                                         label={provider.label}
                                         icon={provider.icon}
@@ -178,12 +190,12 @@ const AuthLogin = () => {
 
                             <div className="text-center text-sm text-slate-500">
                                 Don&apos;t have an account?{' '}
-                                <button
-                                    type="button"
+                                <Link
+                                    href={'/auth/signup'}
                                     className="font-semibold text-blue-600 transition hover:text-blue-700"
                                 >
                                     Create account
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </div>

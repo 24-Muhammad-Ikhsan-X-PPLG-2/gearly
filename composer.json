@@ -12,8 +12,10 @@
         "php": "^8.3",
         "inertiajs/inertia-laravel": "^3.0",
         "laravel/framework": "^13.7",
+        "laravel/socialite": "^5.27",
         "laravel/tinker": "^3.0",
-        "laravel/wayfinder": "^0.1.14"
+        "laravel/wayfinder": "^0.1.14",
+        "socialiteproviders/discord": "^4.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.24",
@@ -51,7 +53,7 @@
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",
-            "bun x concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve --host=localhost\" \"php artisan queue:listen --tries=1 --timeout=0\" \"php artisan pail --timeout=0\" \"bun run dev\" --names=server,queue,logs,vite --kill-others"
+            "bun x concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve --host=localhost\" \"php artisan queue:listen --tries=1 --timeout=0\" \"bun run dev\" --names=server,queue,logs,vite --kill-others"
         ],
         "lint": [
             "pint --parallel"
