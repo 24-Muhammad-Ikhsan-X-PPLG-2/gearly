@@ -63,6 +63,7 @@ class AuthController extends Controller
         }
         if (!$existsEmail) {
             $user = User::query()->create([
+                'avatar' => $discordUser->getAvatar(),
                 'name' => $discordUser->getName(),
                 'email' => $discordUser->getEmail(),
                 'provider' => 'discord',
@@ -87,6 +88,7 @@ class AuthController extends Controller
         }
         if (!$existsEmail) {
             $user = User::query()->create([
+                'avatar' => $googleUser->getAvatar(),
                 'name' => $googleUser->getName(),
                 'email' => $googleUser->getEmail(),
                 'provider' => 'google',
