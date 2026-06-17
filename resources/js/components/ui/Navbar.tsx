@@ -1,10 +1,11 @@
-import { Menu, X } from 'lucide-react';
+import { Menu, User, X } from 'lucide-react';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const { auth } = usePage().props;
 
     const navItems = [
         { label: 'Home', href: '#' },
@@ -46,14 +47,27 @@ const Navbar = () => {
 
                     {/* Auth Buttons */}
                     <div className="hidden items-center space-x-3 lg:flex">
-                        <Link href={'/auth/signin'}>
-                            <button className="cursor-pointer px-4 py-2 text-sm text-slate-600 transition-colors hover:text-slate-900">
-                                Sign In
-                            </button>
-                        </Link>
-                        <button className="cursor-pointer rounded-lg bg-blue-600 px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700">
-                            Register
-                        </button>
+                        {!auth.user ? (
+                            <>
+                                <Link href={'/auth/signin'}>
+                                    <button className="cursor-pointer px-4 py-2 text-sm text-slate-600 transition-colors hover:text-slate-900">
+                                        Sign In
+                                    </button>
+                                </Link>
+                                <Link href={'/auth/signup'}>
+                                    <button className="cursor-pointer rounded-lg bg-blue-600 px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700">
+                                        Sign Up
+                                    </button>
+                                </Link>
+                            </>
+                        ) : (
+                            <Link href={'/profile'}>
+                                <User
+                                    size={24}
+                                    className="text-gray-500 transition duration-300 hover:text-black"
+                                />
+                            </Link>
+                        )}
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -84,12 +98,16 @@ const Navbar = () => {
                                 </a>
                             ))}
                             <div className="space-y-2 border-t border-slate-100 pt-2">
-                                <button className="w-full rounded-lg px-4 py-2 text-left text-sm text-slate-600 transition-colors hover:bg-slate-100">
-                                    Sign In
-                                </button>
-                                <button className="w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700">
-                                    Register
-                                </button>
+                                <Link href={'/auth/signin'}>
+                                    <button className="w-full rounded-lg px-4 py-2 text-left text-sm text-slate-600 transition-colors hover:bg-slate-100">
+                                        Sign In
+                                    </button>
+                                </Link>
+                                <Link href={'/auth/signup'}>
+                                    <button className="w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700">
+                                        Sign Up
+                                    </button>
+                                </Link>
                             </div>
                         </motion.div>
                     )}

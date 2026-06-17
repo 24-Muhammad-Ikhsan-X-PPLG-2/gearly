@@ -18,3 +18,8 @@ Route::prefix('auth')->group(function () {
         Route::get('/logout', [AuthController::class, 'logout']);
     });
 });
+
+Route::prefix('profile')->middleware(['auth'])->group(function () {
+    Route::get('/', [Home::class, 'profile'])->name('profile');
+    Route::get('/seller', [Home::class, 'profileSeller'])->name('profile.seller');
+});

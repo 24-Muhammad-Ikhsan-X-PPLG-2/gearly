@@ -12,4 +12,12 @@ class Home extends Controller
     {
         return Inertia::render("landing");
     }
+    public function profile()
+    {
+        return Inertia::render('profile');
+    }
+    public function profileSeller()
+    {
+        return Inertia::render('seller-profile');
+    }
 }
