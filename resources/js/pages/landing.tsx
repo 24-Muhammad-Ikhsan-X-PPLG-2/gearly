@@ -1,4 +1,4 @@
-import Navbar from '../features/landing/components/Navbar';
+import Navbar from '../components/ui/Navbar';
 import HeroSection from '../features/landing/components/HeroSection';
 import CategoriesSection from '../features/landing/components/CategoriesSection';
 import FeaturedProducts from '../features/landing/components/FeaturedProducts';
