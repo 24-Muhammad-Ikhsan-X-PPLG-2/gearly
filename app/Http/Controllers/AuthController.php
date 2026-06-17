@@ -54,7 +54,7 @@ class AuthController extends Controller
         $existsEmail = User::query()->where('email', $discordUser->getEmail())->first();
         $existsProviderId = User::query()->where('provider_id', $discordUser->getId())->first();
         if ($existsProviderId) {
-            Auth::login($existsProviderId);
+            Auth::login($existsProviderId, true);
             return redirect('/dashboard');
         }
         if (!$existsEmail) {
@@ -65,7 +65,7 @@ class AuthController extends Controller
                 'provider_id' => $discordUser->getId(),
                 'password' => Hash::make(bin2hex(random_bytes(16))),
             ]);
-            Auth::login($user);
+            Auth::login($user, true);
             return redirect('/dashboard');
         }
         return redirect("/auth/signin")->withErrors([
