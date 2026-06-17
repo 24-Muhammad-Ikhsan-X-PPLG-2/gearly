@@ -162,7 +162,7 @@ const FeaturedProducts = () => {
                                                 ${product.price}
                                             </div>
                                         </div>
-                                        <button className="transform rounded-lg bg-blue-600 p-2.5 text-white transition-colors transition-transform group-hover:scale-110 hover:bg-blue-700">
+                                        <button className="transform rounded-lg bg-blue-600 p-2.5 text-white transition-all group-hover:scale-110 hover:bg-blue-700">
                                             <ShoppingCart size={18} />
                                         </button>
                                     </div>
