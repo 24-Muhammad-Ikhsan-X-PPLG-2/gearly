@@ -72,4 +72,11 @@ class AuthController extends Controller
             'email' => "Email already in use."
         ]);
     }
+    public function logout(Request $req)
+    {
+        Auth::logout();
+        $req->session()->invalidate();
+        $req->session()->regenerateToken();
+        return redirect('/auth/signin');
+    }
 }

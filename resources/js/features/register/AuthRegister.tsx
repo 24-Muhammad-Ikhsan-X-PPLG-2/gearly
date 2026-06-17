@@ -17,11 +17,18 @@ import PasswordStrengthIndicator from '@/features/register/components/PasswordSt
 import SecurityNoticeCard from '@/features/register/components/SecurityNoticeCard';
 import BrandPanelRegister from '@/features/register/components/BrandPanelRegister';
 import useRegister from './hooks/useRegister';
+import { Link } from '@inertiajs/react';
 
 const socialProviders = [
-    { label: 'Continue with Google', icon: Google },
-    { label: 'Continue with Discord', icon: Discord },
-    { label: 'Continue with Steam', icon: Gamepad2 },
+    { label: 'Continue with Google', icon: Google, onClick: () => {} },
+    {
+        label: 'Continue with Discord',
+        icon: Discord,
+        onClick: () => {
+            window.location.href = '/auth/discord';
+        },
+    },
+    { label: 'Continue with Steam', icon: Gamepad2, onClick: () => {} },
 ];
 
 const AuthRegister = () => {
@@ -70,6 +77,7 @@ const AuthRegister = () => {
                                         key={provider.label}
                                         label={provider.label}
                                         icon={provider.icon}
+                                        onClick={provider.onClick}
                                     />
                                 ))}
                             </div>
@@ -312,12 +320,12 @@ const AuthRegister = () => {
 
                             <div className="text-center text-sm text-slate-500">
                                 Already have an account?{' '}
-                                <button
-                                    type="button"
+                                <Link
+                                    href={'/auth/signin'}
                                     className="font-semibold text-blue-600 transition hover:text-blue-700"
                                 >
                                     Sign In
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
