@@ -13,7 +13,9 @@ const socialProviders = [
     {
         label: 'Continue with Google',
         icon: Google,
-        onClick: () => {},
+        onClick: () => {
+            window.location.href = '/auth/google';
+        },
     },
     {
         label: 'Continue with Discord',

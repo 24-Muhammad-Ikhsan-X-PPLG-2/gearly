@@ -20,7 +20,13 @@ import useRegister from './hooks/useRegister';
 import { Link } from '@inertiajs/react';
 
 const socialProviders = [
-    { label: 'Continue with Google', icon: Google, onClick: () => {} },
+    {
+        label: 'Continue with Google',
+        icon: Google,
+        onClick: () => {
+            window.location.href = '/auth/google';
+        },
+    },
     {
         label: 'Continue with Discord',
         icon: Discord,

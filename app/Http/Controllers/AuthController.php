@@ -48,6 +48,10 @@ class AuthController extends Controller
     {
         return Socialite::driver("discord")->redirect();
     }
+    public function redirectGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
     public function callbackDC()
     {
         $discordUser = Socialite::driver("discord")->user();
@@ -63,6 +67,30 @@ class AuthController extends Controller
                 'email' => $discordUser->getEmail(),
                 'provider' => 'discord',
                 'provider_id' => $discordUser->getId(),
+                'password' => Hash::make(bin2hex(random_bytes(16))),
+            ]);
+            Auth::login($user, true);
+            return redirect('/dashboard');
+        }
+        return redirect("/auth/signin")->withErrors([
+            'email' => "Email already in use."
+        ]);
+    }
+    public function callbackGoogle()
+    {
+        $googleUser = Socialite::driver("google")->user();
+        $existsEmail = User::query()->where('email', $googleUser->getEmail())->first();
+        $existsProviderId = User::query()->where('provider_id', $googleUser->getId())->first();
+        if ($existsProviderId) {
+            Auth::login($existsProviderId, true);
+            return redirect('/dashboard');
+        }
+        if (!$existsEmail) {
+            $user = User::query()->create([
+                'name' => $googleUser->getName(),
+                'email' => $googleUser->getEmail(),
+                'provider' => 'google',
+                'provider_id' => $googleUser->getId(),
                 'password' => Hash::make(bin2hex(random_bytes(16))),
             ]);
             Auth::login($user, true);

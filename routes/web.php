@@ -13,6 +13,8 @@ Route::prefix('auth')->group(function () {
 
         Route::get('/discord', [AuthController::class, "redirectDC"]);
         Route::get('/discord/callback', [AuthController::class, "callbackDC"]);
+        Route::get('/google', [AuthController::class, "redirectGoogle"]);
+        Route::get('/google/callback', [AuthController::class, "callbackGoogle"]);
     });
     Route::middleware(['auth'])->group(function () {
         Route::get('/logout', [AuthController::class, 'logout']);
