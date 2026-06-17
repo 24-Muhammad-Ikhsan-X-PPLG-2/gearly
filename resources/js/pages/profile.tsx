@@ -1,46 +1,16 @@
+import SettingRow from '@/features/profile/components/SettingsRow';
+import ToggleSwitch from '@/features/profile/components/ToggleSwitch';
+import { accountDetails } from '@/features/profile/constant';
 import { motion } from 'framer-motion';
 import {
-    AtSign,
     Bell,
-    CalendarDays,
     CheckCircle2,
     Edit3,
     Lock,
-    LogOut,
-    Mail,
     ShieldCheck,
-    Smartphone,
     User2,
 } from 'lucide-react';
 import { useState } from 'react';
-
-const accountDetails = [
-    {
-        label: 'Full name',
-        value: 'Muhammad Rizki',
-        icon: User2,
-    },
-    {
-        label: 'Username',
-        value: '@rizkidev',
-        icon: AtSign,
-    },
-    {
-        label: 'Email address',
-        value: 'rizki@email.com',
-        icon: Mail,
-    },
-    {
-        label: 'Phone number',
-        value: '+62 812-3456-7890',
-        icon: Smartphone,
-    },
-    {
-        label: 'Member since',
-        value: 'August 2024',
-        icon: CalendarDays,
-    },
-];
 
 const Profile = () => {
     const [twoFactorEnabled, setTwoFactorEnabled] = useState(true);
@@ -216,63 +186,5 @@ const Profile = () => {
         </motion.main>
     );
 };
-
-interface SettingRowProps {
-    icon: React.ComponentType<{ size?: number }>;
-    title: string;
-    description: string;
-    action: React.ReactNode;
-}
-
-const SettingRow = ({
-    icon: Icon,
-    title,
-    description,
-    action,
-}: SettingRowProps) => (
-    <div className="rounded-4xl border border-slate-200 bg-slate-50 p-5">
-        <div className="flex items-start gap-4">
-            <div className="flex h-11 w-11 items-center justify-center rounded-3xl bg-white text-slate-700 shadow-sm shadow-slate-200/30">
-                <Icon size={18} />
-            </div>
-            <div className="min-w-0 flex-1">
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                        <p className="text-base font-semibold text-slate-900">
-                            {title}
-                        </p>
-                        <p className="mt-2 text-sm leading-6 text-slate-500">
-                            {description}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div>{action}</div>
-        </div>
-    </div>
-);
-
-interface ToggleSwitchProps {
-    checked: boolean;
-    onChange: () => void;
-}
-
-const ToggleSwitch = ({ checked, onChange }: ToggleSwitchProps) => (
-    <button
-        type="button"
-        onClick={onChange}
-        className={`relative inline-flex h-9 w-16 shrink-0 items-center rounded-full transition-colors duration-200 ${
-            checked ? 'bg-blue-600' : 'bg-slate-300'
-        }`}
-        aria-pressed={checked}
-    >
-        <span className="sr-only">Toggle setting</span>
-        <span
-            className={`inline-block h-7 w-7 translate-x-1 transform rounded-full bg-white shadow transition duration-200 ${
-                checked ? 'translate-x-8' : 'translate-x-1'
-            }`}
-        />
-    </button>
-);
 
 export default Profile;

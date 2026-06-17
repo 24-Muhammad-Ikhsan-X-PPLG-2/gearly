@@ -1,6 +1,13 @@
+import Card from '@/features/profile-seller/components/Card';
+import SettingRow from '@/features/profile-seller/components/SettingRow';
+import ToggleSwitch from '@/features/profile-seller/components/ToggleSwitch';
+import {
+    stats,
+    storeDetails,
+    accountDetails,
+} from '@/features/profile-seller/constant';
 import { motion } from 'framer-motion';
 import {
-    AtSign,
     Bell,
     CheckCircle2,
     Edit3,
@@ -9,34 +16,8 @@ import {
     ShieldAlert,
     ShoppingBag,
     Store,
-    User2,
 } from 'lucide-react';
-import { useState, type ComponentType, type ReactNode } from 'react';
-
-const storeDetails = [
-    { label: 'Store name', value: 'Diamond Store' },
-    {
-        label: 'Store description',
-        value: 'Secure digital currency and top-up store with fast delivery and verified seller protection.',
-    },
-    { label: 'Join date', value: 'January 2025' },
-    { label: 'Store URL', value: 'gearly.com/store/diamondstore' },
-    { label: 'Store category', value: 'Game Currency & Top Up' },
-];
-
-const accountDetails = [
-    { label: 'Full name', value: 'Muhammad Rizki', icon: User2 },
-    { label: 'Email address', value: 'rizki@email.com', icon: AtSign },
-    { label: 'Phone number', value: '+62 812-3456-7890', icon: Bell },
-    { label: 'Member since', value: 'August 2024', icon: CheckCircle2 },
-];
-
-const stats = [
-    { label: 'Active Products', value: '128' },
-    { label: 'Total Sales', value: '15,240' },
-    { label: 'Followers', value: '2,345' },
-    { label: 'Rating', value: '4.9/5' },
-];
+import { useState } from 'react';
 
 const SellerProfile = () => {
     const [vacationMode, setVacationMode] = useState(false);
@@ -306,92 +287,5 @@ const SellerProfile = () => {
         </motion.main>
     );
 };
-
-interface CardProps {
-    title: string;
-    description: string;
-    children: ReactNode;
-}
-
-const Card = ({ title, description, children }: CardProps) => (
-    <div className="rounded-4xl border border-slate-200 bg-white p-6 shadow-sm shadow-slate-200/40">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-                <h2 className="text-lg font-semibold text-slate-900">
-                    {title}
-                </h2>
-                <p className="mt-2 text-sm leading-6 text-slate-500">
-                    {description}
-                </p>
-            </div>
-        </div>
-        <div className="mt-6">{children}</div>
-    </div>
-);
-
-interface SettingRowProps {
-    icon: ComponentType<{ size?: number }>;
-    title: string;
-    description: string;
-    action: ReactNode;
-    status?: string;
-}
-
-const SettingRow = ({
-    icon: Icon,
-    title,
-    description,
-    action,
-    status,
-}: SettingRowProps) => (
-    <div className="rounded-4xl border border-slate-200 bg-slate-50 p-5">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-start gap-4">
-                <div className="mt-1 flex h-11 w-11 items-center justify-center rounded-3xl bg-white text-slate-700 shadow-sm shadow-slate-200/30">
-                    <Icon size={18} />
-                </div>
-                <div>
-                    <p className="text-base font-semibold text-slate-900">
-                        {title}
-                    </p>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
-                        {description}
-                    </p>
-                </div>
-            </div>
-            <div className="flex items-center gap-4">
-                {status ? (
-                    <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold tracking-[0.24em] text-slate-600 uppercase">
-                        {status}
-                    </span>
-                ) : null}
-                {action}
-            </div>
-        </div>
-    </div>
-);
-
-interface ToggleSwitchProps {
-    checked: boolean;
-    onChange: () => void;
-}
-
-const ToggleSwitch = ({ checked, onChange }: ToggleSwitchProps) => (
-    <button
-        type="button"
-        onClick={onChange}
-        className={`relative inline-flex h-9 w-16 shrink-0 items-center rounded-full transition-colors duration-200 ${
-            checked ? 'bg-blue-600' : 'bg-slate-300'
-        } cursor-pointer`}
-        aria-pressed={checked}
-    >
-        <span className="sr-only">Toggle setting</span>
-        <span
-            className={`inline-block h-7 w-7 transform rounded-full bg-white shadow transition duration-200 ${
-                checked ? 'translate-x-7' : 'translate-x-1'
-            }`}
-        />
-    </button>
-);
 
 export default SellerProfile;
