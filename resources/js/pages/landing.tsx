@@ -10,8 +10,7 @@ import SellerCTA from '../features/landing/components/SellerCTA';
 import Footer from '../features/landing/components/Footer';
 import { FC } from 'react';
 
-const Landing: FC<{ user: any }> = ({ user }) => {
-    console.log(user);
+const Landing: FC = () => {
     return (
         <div className="min-h-screen bg-white">
             <Navbar />

@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { LoginScheme, LoginSchemeType } from '../scheme';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { fetchApi } from '@/lib/fetch';
+import { usePage } from '@inertiajs/react';
 
 const useLogin = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const { errors: errorsFromLaravel } = usePage().props;
     const {
         register,
         handleSubmit,
@@ -36,6 +38,15 @@ const useLogin = () => {
             return;
         }
     };
+    useEffect(() => {
+        if (!errorsFromLaravel) return;
+        Object.entries(errorsFromLaravel).forEach(([field, messages]) => {
+            setError(field as keyof LoginSchemeType, {
+                type: 'server',
+                message: messages,
+            });
+        });
+    }, [errorsFromLaravel]);
     return {
         register,
         isSubmitting,

@@ -53,19 +53,19 @@ class AuthController extends Controller
         $discordUser = Socialite::driver("discord")->user();
         $existsEmail = User::query()->where('email', $discordUser->getEmail())->first();
         $existsProviderId = User::query()->where('provider_id', $discordUser->getId())->first();
+        if ($existsProviderId) {
+            Auth::login($existsProviderId);
+            return redirect('/dashboard');
+        }
         if (!$existsEmail) {
-            if ($existsProviderId) {
-                Auth::login($existsProviderId);
-            } else {
-                $user = User::query()->create([
-                    'name' => $discordUser->getName(),
-                    'email' => $discordUser->getEmail(),
-                    'provider' => 'discord',
-                    'provider_id' => $discordUser->getId(),
-                    'password' => Hash::make(bin2hex(random_bytes(16))),
-                ]);
-                Auth::login($user);
-            }
+            $user = User::query()->create([
+                'name' => $discordUser->getName(),
+                'email' => $discordUser->getEmail(),
+                'provider' => 'discord',
+                'provider_id' => $discordUser->getId(),
+                'password' => Hash::make(bin2hex(random_bytes(16))),
+            ]);
+            Auth::login($user);
             return redirect('/dashboard');
         }
         return redirect("/auth/signin")->withErrors([

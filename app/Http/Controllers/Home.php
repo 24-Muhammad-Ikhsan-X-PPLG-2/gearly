@@ -10,9 +10,6 @@ class Home extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        return Inertia::render("landing", [
-            'user' => $user
-        ]);
+        return Inertia::render("landing");
     }
 }
