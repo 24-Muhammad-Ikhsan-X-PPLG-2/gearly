@@ -380,7 +380,7 @@ const ToggleSwitch = ({ checked, onChange }: ToggleSwitchProps) => (
     <button
         type="button"
         onClick={onChange}
-        className={`relative inline-flex h-9 w-16 flex-shrink-0 items-center rounded-full transition-colors duration-200 ${
+        className={`relative inline-flex h-9 w-16 shrink-0 items-center rounded-full transition-colors duration-200 ${
             checked ? 'bg-blue-600' : 'bg-slate-300'
         } cursor-pointer`}
         aria-pressed={checked}
